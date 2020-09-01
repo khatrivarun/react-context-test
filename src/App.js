@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from "react";
+import { TestContext } from "./context/TestContext";
+import { INCREMENT, DECREMENT } from "./reducers/TestReducer";
 
 function App() {
+  const { test, dispatch } = useContext(TestContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      {test.number}
+      <div>
+        <button
+          onClick={() =>
+            dispatch({
+              type: INCREMENT,
+            })
+          }
         >
-          Learn React
-        </a>
-      </header>
+          Increment
+        </button>
+        <button
+          onClick={() =>
+            dispatch({
+              type: DECREMENT,
+            })
+          }
+        >
+          Decrement
+        </button>
+      </div>
     </div>
   );
 }
